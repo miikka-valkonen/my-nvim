@@ -41,6 +41,8 @@ require('lazy').setup({
 
   require 'plugins.statusline',
 
+  require 'plugins.neo-tree',
+
   require 'plugins.treesitter',
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
