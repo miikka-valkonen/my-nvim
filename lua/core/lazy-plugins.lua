@@ -20,30 +20,32 @@ require('lazy').setup({
 
   -- modular approach: using `require 'path.name'` will
   -- include a plugin definition from file lua/path/name.lua
-
-  require 'plugins.gitsigns',
-
-  require 'plugins.which-key',
-
-  require 'plugins.telescope',
-
-  require 'plugins.lspconfig',
-
-  require 'plugins.conform',
-
-  require 'plugins.blink-cmp',
-
-  require 'plugins.vague',
-
-  require 'plugins.todo-comments',
-
-  require 'plugins.mini',
-
-  require 'plugins.statusline',
-
-  require 'plugins.neo-tree',
-
-  require 'plugins.treesitter',
+  --
+  -- require 'plugins.gitsigns',
+  --
+  -- require 'plugins.which-key',
+  --
+  -- require 'plugins.telescope',
+  --
+  -- require 'plugins.lspconfig',
+  --
+  -- require 'plugins.conform',
+  --
+  -- require 'plugins.blink-cmp',
+  --
+  -- require 'plugins.vague',
+  --
+  -- require 'plugins.todo-comments',
+  --
+  -- require 'plugins.mini',
+  --
+  -- require 'plugins.statusline',
+  --
+  -- require 'plugins.neo-tree',
+  --
+  -- require 'plugins.treesitter',
+  --
+  -- require 'plugins.lint',
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -64,7 +66,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!

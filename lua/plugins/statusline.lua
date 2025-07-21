@@ -66,7 +66,7 @@ return {
         sections = {
           lualine_a = { 'mode' },
           lualine_b = {},
-          lualine_c = { 'filename', lsp_status, 'codecompanion' },
+          lualine_c = { 'filename', lsp_status },
           lualine_x = { diff, diagnostics, filetype },
           lualine_y = {},
           lualine_z = {},

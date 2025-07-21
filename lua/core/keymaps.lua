@@ -8,14 +8,6 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>xq', vim.diagnostic.setloclist, { desc = '[Q]uickfix list' })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -30,6 +22,43 @@ vim.keymap.set('n', '<C-S-h>', '<C-w>H', { desc = 'Move window to the left' })
 vim.keymap.set('n', '<C-S-l>', '<C-w>L', { desc = 'Move window to the right' })
 vim.keymap.set('n', '<C-S-j>', '<C-w>J', { desc = 'Move window to the lower' })
 vim.keymap.set('n', '<C-S-k>', '<C-w>K', { desc = 'Move window to the upper' })
+
+vim.keymap.set('n', '<TAB>', '<cmd>bn!<CR>', {}) -- Switch to next buffer
+vim.keymap.set('n', '<S-TAB>', '<cmd>bp!<CR>', {}) -- Switch to previous buffer
+
+-- Terminal keymaps
+-- Add smooth window navigation
+vim.keymap.set('t', '<C-h>', '<C-\\><C-N><C-w>h')
+vim.keymap.set('t', '<C-j>', '<C-\\><C-N><C-w>j')
+vim.keymap.set('t', '<C-k>', '<C-\\><C-N><C-w>k')
+vim.keymap.set('t', '<C-l>', '<C-\\><C-N><C-w>l')
+-- Exit terminal mode
+vim.keymap.set('t', '<ESC>', '<C-\\><C-N>')
+vim.keymap.set('t', 'jk', '<C-\\><C-N>')
+vim.keymap.set('n', '<leader>T', '<Cmd>!tmux new-window -c ' .. vim.fn.getcwd() .. '<CR>', { desc = 'New Tmux window' })
+
+-- Quickly exit from insert mode
+vim.keymap.set('i', 'jk', '<ESC>')
+
+-- Stay in indent mode
+vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('v', '>', '>gv')
+
+vim.keymap.set('n', '<leader>cW', function()
+  vim.cmd '%s/\r//g'
+end, { desc = 'Replace [W]indows line endings' })
+
+vim.keymap.set('n', '<leader>q', '<cmd>qa<CR>', { desc = '[Q]uit Neovim' })
+vim.keymap.set('n', '<C-s>', '<cmd>w<CR>')
+
+-- Run menu
+vim.keymap.set('n', '<leader>r', '', { desc = 'run' })
+vim.keymap.set(
+  'n',
+  '<leader>rf',
+  '<Cmd>!tmux new-window -S -c ' .. vim.fn.getcwd() .. '/src/AzureFunctions -n func "func start"<CR>',
+  { desc = 'Run [F]unction app' }
+)
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
