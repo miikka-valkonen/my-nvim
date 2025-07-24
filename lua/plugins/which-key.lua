@@ -64,6 +64,7 @@ return {
         { '<leader>c', group = '[C]ode' },
         { '<leader>b', group = '[B]uffer' },
         { '<leader>q', group = '[Q]uit' },
+        { 'gs', group = '[S]urround' },
       },
     },
   },
