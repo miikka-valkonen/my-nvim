@@ -2,6 +2,8 @@ return {
   {
     'nvimdev/indentmini.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
-    opts = {},
+    opts = {
+      only_current = true,
+    },
   },
 }

@@ -51,15 +51,18 @@ return {
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
+      local actions = require 'telescope.actions'
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
-        --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          mappings = {
+            i = {
+              ['<esc>'] = actions.close,
+              ['jk'] = actions.close,
+            },
+          },
+        },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
@@ -71,6 +74,7 @@ return {
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'fidget')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -82,8 +86,9 @@ return {
       vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'Current [W]ord' })
       vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[D]iagnostics' })
       vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = '[R]esume' })
-      vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = 'Recent Files ("." for repeat)' })
+      vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = 'Recent files ("." for repeat)' })
       vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[B]uffers' })
+      vim.keymap.set('n', '<leader>n', require('telescope').extensions.fidget.fidget(), { desc = '[N]otification history' })
 
       -- It's also possible to pass additional configuration options.
       vim.keymap.set('n', '<leader>fc', function()
@@ -92,4 +97,3 @@ return {
     end,
   },
 }
--- vim: ts=2 sts=2 sw=2 et

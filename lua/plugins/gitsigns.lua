@@ -33,11 +33,10 @@ return {
           vim.keymap.set(mode, l, r, opts)
         end
 
-        map('n', '<leader>gb', gitsigns.blame, { desc = '[B]lame line' })
+        map('n', '<leader>gb', gitsigns.blame, { desc = '[B]lame' })
         map('n', '<leader>gl', gitsigns.blame_line, { desc = 'Blame [L]ine' })
         map('n', '<leader>gt', gitsigns.toggle_current_line_blame, { desc = '[T]oggle blame line' })
       end,
     },
   },
 }
--- vim: ts=2 sts=2 sw=2 et

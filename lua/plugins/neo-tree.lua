@@ -14,10 +14,13 @@ return {
     { '<leader>e', ':Neotree reveal toggle<CR>', desc = 'NeoTree', silent = true },
   },
   opts = {
-    filesystem = {
-      window = {
-        mappings = {
-          ['q'] = 'close_window',
+    default_component_configs = {
+      git_status = {
+        symbols = {
+          -- Status type
+          ignored = '',
+          unstaged = '',
+          staged = '',
         },
       },
     },

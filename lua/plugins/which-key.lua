@@ -62,8 +62,9 @@ return {
         { '<leader>f', group = '[F]ind' },
         { '<leader>g', group = '[G]it' },
         { '<leader>c', group = '[C]ode' },
+        { '<leader>b', group = '[B]uffer' },
+        { '<leader>q', group = '[Q]uit' },
       },
     },
   },
 }
--- vim: ts=2 sts=2 sw=2 et

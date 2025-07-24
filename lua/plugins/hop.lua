@@ -4,7 +4,7 @@ return {
     version = '*',
     keys = {
       { 's', ':HopWord<CR>', desc = 'Hop word', silent = true },
-      { 's', ':HopChar1CurrentLine<CR>', desc = 'Hop char', silent = true },
+      { 'S', ':HopChar1CurrentLine<CR>', desc = 'Hop char', silent = true },
     },
     opts = {
       keys = 'tsraneiodhplfugjvmwybk',
