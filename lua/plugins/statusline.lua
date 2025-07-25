@@ -67,8 +67,8 @@ return {
           lualine_a = { 'mode' },
           lualine_b = {},
           lualine_c = { 'filename', lsp_status },
-          lualine_x = { diff, diagnostics, filetype },
-          lualine_y = {},
+          lualine_x = { require('recorder').recordingStatus },
+          lualine_y = { diff, diagnostics, filetype },
           lualine_z = {},
         },
       }

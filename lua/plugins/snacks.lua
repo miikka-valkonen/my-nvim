@@ -11,7 +11,21 @@ return {
       bufdelete = { enabled = true },
       dashboard = { enabled = true },
       -- explorer = { enabled = true },
-      -- indent = { enabled = true },
+      indent = {
+        indent = {
+          enabled = false,
+        },
+        chunk = {
+          enabled = true,
+          char = {
+            horizontal = '─',
+            vertical = '│',
+            corner_top = '╭',
+            corner_bottom = '╰',
+            arrow = '─',
+          },
+        },
+      },
       -- input = { enabled = true },
       -- picker = { enabled = true },
       -- notifier = { enabled = true },

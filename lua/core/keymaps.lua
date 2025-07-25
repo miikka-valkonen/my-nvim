@@ -73,3 +73,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank()
   end,
 })
+
+vim.api.nvim_create_user_command('MasonInstallAll', function()
+  vim.cmd 'MasonInstall csharp-language-server csharpier azure-pipelines-language-server'
+end, {})

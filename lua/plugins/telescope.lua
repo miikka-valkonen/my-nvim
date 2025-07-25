@@ -88,7 +88,7 @@ return {
       vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = '[R]esume' })
       vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = 'Recent files ("." for repeat)' })
       vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[B]uffers' })
-      vim.keymap.set('n', '<leader>n', require('telescope').extensions.fidget.fidget(), { desc = '[N]otification history' })
+      vim.keymap.set('n', '<leader>n', '<cmd>Telescope fidget<CR>', { desc = '[N]otification history' })
 
       -- It's also possible to pass additional configuration options.
       vim.keymap.set('n', '<leader>fc', function()
