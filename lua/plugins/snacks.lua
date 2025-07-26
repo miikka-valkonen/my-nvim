@@ -26,6 +26,7 @@ return {
           },
         },
       },
+      lazygit = { enabled = true },
       -- input = { enabled = true },
       -- picker = { enabled = true },
       -- notifier = { enabled = true },
@@ -56,6 +57,13 @@ return {
           Snacks.bufdelete.all()
         end,
         desc = 'Delete [A]ll',
+      },
+      {
+        '<leader>gg',
+        function()
+          Snacks.lazygit.open()
+        end,
+        desc = 'Lazy[G]it',
       },
     },
   },
