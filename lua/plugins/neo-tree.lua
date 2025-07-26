@@ -12,6 +12,7 @@ return {
   lazy = false,
   keys = {
     { '<leader>e', ':Neotree reveal toggle<CR>', desc = 'NeoTree', silent = true },
+    { '<leader>bb', ':Neotree source=buffers position=right toggle<CR>', desc = '[B]uffers (NeoTree)', silent = true },
   },
   opts = {
     default_component_configs = {

@@ -27,6 +27,7 @@ return {
         },
       },
       lazygit = { enabled = true },
+      terminal = { enabled = true },
       -- input = { enabled = true },
       -- picker = { enabled = true },
       -- notifier = { enabled = true },
@@ -64,6 +65,13 @@ return {
           Snacks.lazygit.open()
         end,
         desc = 'Lazy[G]it',
+      },
+      {
+        '<leader>t',
+        function()
+          Snacks.terminal.toggle()
+        end,
+        desc = '[T]erminal',
       },
     },
   },
