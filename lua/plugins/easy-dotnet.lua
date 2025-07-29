@@ -3,11 +3,11 @@ return {
   cmd = 'Dotnet',
   keys = {
     { '<leader>rb', ':Dotnet build<CR>', desc = '[B]uild dotnet', silent = true },
+    { '<leader>rt', ':Dotnet test<CR>', desc = '[T]est dotnet', silent = true },
   },
   config = function()
     local dotnet = require 'easy-dotnet'
     dotnet.setup {
-      ---@type TestRunnerOptions
       test_runner = {
         ---@type "split" | "vsplit" | "float" | "buf"
         viewmode = 'float',
