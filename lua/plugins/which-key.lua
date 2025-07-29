@@ -63,6 +63,7 @@ return {
         { '<leader>g', group = '[G]it' },
         { '<leader>c', group = '[C]ode' },
         { '<leader>b', group = '[B]uffer' },
+        { '<leader>w', group = '[W]indow' },
         { '<leader>q', group = '[Q]uit' },
         { 'gs', group = '[S]urround' },
       },
