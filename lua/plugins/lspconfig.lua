@@ -72,6 +72,12 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
+          -- Disable disgusting, unpopular, suboptimal defaults
+          pcall(vim.keymap.del, 'n', 'gra')
+          pcall(vim.keymap.del, 'n', 'gri')
+          pcall(vim.keymap.del, 'n', 'grn')
+          pcall(vim.keymap.del, 'n', 'grr')
+
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
           map('<leader>cr', vim.lsp.buf.rename, '[R]ename')

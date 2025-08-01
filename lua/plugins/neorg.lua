@@ -22,7 +22,6 @@ return {
               default_workspace = 'notes',
             },
           },
-          ['core.esupports.hop'] = {},
         },
       }
 

@@ -19,7 +19,15 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 
+-- vim.api.nvim_create_autocmd('Filetype', {
+--   pattern = 'norg',
+--   callback = function()
+--     vim.keymap.set('n', '<C-Space>', 'Plug>(neorg.qol.todo-items.todo.task-cycle)', { buffer = true })
+--     vim.keymap.set('n', '<CR>', 'Plug>(neorg.esupports.hop.hop-link)', { buffer = true })
+--   end,
+-- })
+
 -- User commands
 vim.api.nvim_create_user_command('MasonInstallAll', function()
-  vim.cmd 'MasonInstall csharp-language-server csharpier azure-pipelines-language-server'
+  vim.cmd 'MasonInstall csharp-language-server csharpier azure-pipelines-language-server jsonlint'
 end, {})

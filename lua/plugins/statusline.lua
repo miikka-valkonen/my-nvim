@@ -16,7 +16,7 @@ return {
           separator = ' ',
         },
         -- List of LSP names to ignore (e.g., `null-ls`):
-        ignore_lsp = { 'copilot' },
+        ignore_lsp = {},
       }
 
       local diagnostics = {
@@ -66,7 +66,7 @@ return {
         sections = {
           lualine_a = { 'mode' },
           lualine_b = {},
-          lualine_c = { 'filename', lsp_status, 'copilot' },
+          lualine_c = { { 'filename', path = 1 }, lsp_status },
           lualine_x = { require('recorder').recordingStatus },
           lualine_y = { diff, diagnostics, filetype },
           lualine_z = {},

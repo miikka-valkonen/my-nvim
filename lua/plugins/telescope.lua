@@ -90,6 +90,9 @@ return {
       vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[B]uffers' })
       vim.keymap.set('n', '<leader>n', '<cmd>Telescope fidget<CR>', { desc = '[N]otification history' })
 
+      vim.keymap.set('n', '<leader>gc', builtin.git_bcommits, { desc = '[C]ommits (buffer)' })
+      vim.keymap.set('n', '<leader>gC', builtin.git_commits, { desc = '[C]ommits (root)' })
+
       -- It's also possible to pass additional configuration options.
       vim.keymap.set('n', '<leader>fc', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }

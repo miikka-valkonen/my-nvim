@@ -21,7 +21,7 @@ vim.keymap.set('n', '<TAB>', '<cmd>bn!<CR>', {}) -- Switch to next buffer
 vim.keymap.set('n', '<S-TAB>', '<cmd>bp!<CR>', {}) -- Switch to previous buffer
 
 vim.keymap.set('n', '<leader>s', '<cmd>vsplit<CR>', { desc = '[S]plit window' })
-vim.keymap.set('n', '<leader>wd', '<C-W>c', { desc = '[D]elete current' })
+vim.keymap.set('n', '<C-C>', '<C-W>c', { desc = 'Close current window' })
 
 -- Terminal keymaps
 -- Add smooth window navigation
@@ -32,7 +32,7 @@ vim.keymap.set('t', '<C-l>', '<C-\\><C-N><C-w>l')
 -- Exit terminal mode
 vim.keymap.set('t', '<ESC>', '<C-\\><C-N>')
 vim.keymap.set('t', 'jk', '<C-\\><C-N>')
-vim.keymap.set('n', '<leader>T', '<Cmd>!tmux new-window -c ' .. vim.fn.getcwd() .. '<CR>', { desc = 'New Tmux window' })
+vim.keymap.set('n', '<leader>T', '<Cmd>!tmux new-window -c ' .. vim.fn.getcwd() .. '<CR>', { desc = 'New [T]mux window', silent = true })
 
 -- Quickly exit from insert mode
 vim.keymap.set('i', 'jk', '<ESC>')
@@ -54,5 +54,5 @@ vim.keymap.set(
   'n',
   '<leader>rf',
   '<Cmd>!tmux new-window -S -c ' .. vim.fn.getcwd() .. '/src/AzureFunctions -n func "func start"<CR>',
-  { desc = 'Run [F]unction app' }
+  { desc = 'Run [F]unction app', silent = true }
 )
