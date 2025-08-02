@@ -1,13 +1,11 @@
 return {
   {
     'nvim-neorg/neorg',
-    -- lazy-load on filetype
     ft = 'norg',
     cmd = 'Neorg', -- lazy load on command, allows you to autocomplete :Neorg regardless of whether it's loaded yet
     keys = {
       { '<leader>N', ':Neorg workspace notes<CR>', desc = '[N]eorg notes', silent = true },
     },
-    --  (you could also just remove both lazy loading things)
     priority = 30, -- treesitter is on default priority of 50, neorg should load after it.
     config = function()
       require('neorg').setup {
@@ -20,6 +18,11 @@ return {
                 notes = '~/notes',
               },
               default_workspace = 'notes',
+            },
+          },
+          ['core.keybinds'] = {
+            config = {
+              default_keybinds = false,
             },
           },
         },

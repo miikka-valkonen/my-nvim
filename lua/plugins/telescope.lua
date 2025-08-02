@@ -28,6 +28,7 @@ return {
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'ghassan0/telescope-glyph.nvim' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -68,6 +69,18 @@ return {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
+          glyph = {
+            action = function(glyph)
+              -- argument glyph is a table.
+              -- {name="", value="", category="", description=""}
+
+              vim.fn.setreg('*', glyph.value)
+              print([[Press p or "*p to paste this glyph]] .. glyph.value)
+
+              -- insert glyph when picked
+              vim.api.nvim_put({ glyph.value }, 'c', false, true)
+            end,
+          },
         },
       }
 
@@ -75,6 +88,7 @@ return {
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'fidget')
+      pcall(require('telescope').load_extension, 'glyph')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
