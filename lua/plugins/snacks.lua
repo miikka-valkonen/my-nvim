@@ -15,21 +15,21 @@ return {
           ---@type snacks.dashboard.Item[]
           keys = {
             { icon = ' ', key = 'f', desc = 'Find File', action = ":lua Snacks.dashboard.pick('files')" },
-            { icon = ' ', key = 'g', desc = 'Find Text', action = ":lua Snacks.dashboard.pick('live_grep')" },
-            { icon = ' ', key = 's', desc = 'Restore Session', section = 'session' },
+            { icon = ' ', key = 't', desc = 'Find Text', action = ":lua Snacks.dashboard.pick('live_grep')" },
+            { icon = '', key = 'e', desc = 'File Explorer', action = ':Neotree' },
+            { icon = '', key = 'g', desc = 'Git', action = ':lua Snacks.lazygit.open()' },
+            { icon = '', key = 's', desc = 'Restore Session', section = 'session' },
             { icon = '󰒲 ', key = 'l', desc = 'Lazy', action = ':Lazy', enabled = package.loaded.lazy ~= nil },
-            { icon = '', key = 'm', desc = 'Mason', action = ':Mason', enabled = package.loaded.lazy ~= nil },
+            { icon = '', key = 'm', desc = 'Mason', action = ':Mason', enabled = package.loaded.lazy ~= nil },
             { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
           },
           header = [[
-
    ▄▄▄▄▀ ▄  █ ▄█    ▄▄▄▄▄       ▄█    ▄▄▄▄▄       ▄████  ▄█    ▄   ▄███▄   
 ▀▀▀ █   █   █ ██   █     ▀▄     ██   █     ▀▄     █▀   ▀ ██     █  █▀   ▀  
     █   ██▀▀█ ██ ▄  ▀▀▀▀▄       ██ ▄  ▀▀▀▀▄       █▀▀    ██ ██   █ ██▄▄    
    █    █   █ ▐█  ▀▄▄▄▄▀        ▐█  ▀▄▄▄▄▀        █      ▐█ █ █  █ █▄   ▄▀ 
   ▀        █   ▐                 ▐                 █      ▐ █  █ █ ▀███▀   
           ▀                                         ▀       █   ██         
-
       ]],
         },
         sections = {
@@ -41,7 +41,7 @@ return {
           {
             pane = 2,
             { section = 'header' },
-            { section = 'keys', gap = 2 },
+            { section = 'keys', gap = 1 },
           },
         },
       },

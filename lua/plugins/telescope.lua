@@ -24,11 +24,17 @@ return {
           return vim.fn.executable 'make' == 1
         end,
       },
+      {
+        'nvim-telescope/telescope-frecency.nvim',
+        -- install the latest stable version
+        version = '*',
+      },
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
       { 'ghassan0/telescope-glyph.nvim' },
+      { 'jonarrien/telescope-cmdline.nvim' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -89,6 +95,8 @@ return {
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'fidget')
       pcall(require('telescope').load_extension, 'glyph')
+      pcall(require('telescope').load_extension, 'frecency')
+      pcall(require('telescope').load_extension, 'cmdline')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -103,9 +111,12 @@ return {
       vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = 'Recent files ("." for repeat)' })
       vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[B]uffers' })
       vim.keymap.set('n', '<leader>n', '<cmd>Telescope fidget<CR>', { desc = '[N]otification history' })
+      vim.keymap.set('n', '<leader>ff', '<cmd>Telescope frecency workspace=CWD path_display={"shorten"}<CR>', { desc = '[F]recency' })
 
       vim.keymap.set('n', '<leader>gc', builtin.git_bcommits, { desc = '[C]ommits (buffer)' })
       vim.keymap.set('n', '<leader>gC', builtin.git_commits, { desc = '[C]ommits (root)' })
+
+      vim.keymap.set('n', 'Q', '<cmd>Telescope cmdline<cr>', { desc = 'Cmdline' })
 
       -- It's also possible to pass additional configuration options.
       vim.keymap.set('n', '<leader>fc', function()
