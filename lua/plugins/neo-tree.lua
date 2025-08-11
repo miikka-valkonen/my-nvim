@@ -15,6 +15,9 @@ return {
     { '<leader>bb', ':Neotree source=buffers position=right toggle<CR>', desc = '[B]uffers (NeoTree)', silent = true },
   },
   opts = {
+    buffers = {
+      show_unloaded = true,
+    },
     default_component_configs = {
       git_status = {
         symbols = {

@@ -46,21 +46,21 @@ return {
         },
       },
       -- explorer = { enabled = true },
-      indent = {
-        indent = {
-          enabled = false,
-        },
-        chunk = {
-          enabled = true,
-          char = {
-            horizontal = '─',
-            vertical = '│',
-            corner_top = '╭',
-            corner_bottom = '╰',
-            arrow = '─',
-          },
-        },
-      },
+      -- indent = {
+      --   indent = {
+      --     enabled = false,
+      --   },
+      --   chunk = {
+      --     enabled = true,
+      --     char = {
+      --       horizontal = '─',
+      --       vertical = '│',
+      --       corner_top = '╭',
+      --       corner_bottom = '╰',
+      --       arrow = '─',
+      --     },
+      --   },
+      -- },
       lazygit = { enabled = true },
       terminal = { enabled = true },
       -- input = { enabled = true },
