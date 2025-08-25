@@ -19,6 +19,22 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'PersistenceSavePost',
+  callback = function()
+    local name = vim.fn.getcwd():gsub('[\\/:]+', '%%')
+    require('dart').write_session(name)
+  end,
+})
+
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'PersistenceLoadPost',
+  callback = function()
+    local name = vim.fn.getcwd():gsub('[\\/:]+', '%%')
+    require('dart').read_session(name)
+  end,
+})
+
 vim.api.nvim_create_autocmd('Filetype', {
   pattern = 'norg',
   callback = function()
