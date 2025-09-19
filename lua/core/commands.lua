@@ -51,6 +51,13 @@ vim.api.nvim_create_autocmd('Filetype', {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'fsharp',
+  callback = function()
+    vim.bo.commentstring = '// %s'
+  end,
+})
+
 -- User commands
 vim.api.nvim_create_user_command('MasonInstallAll', function()
   vim.cmd 'MasonInstall csharp-language-server csharpier azure-pipelines-language-server jsonlint'
