@@ -79,6 +79,7 @@ return {
         default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' },
         per_filetype = {
           codecompanion = { 'codecompanion' },
+          sql = { 'vim-dadbod-completion' },
         },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },

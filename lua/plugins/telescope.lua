@@ -87,6 +87,9 @@ return {
               vim.api.nvim_put({ glyph.value }, 'c', false, true)
             end,
           },
+          frecency = {
+            show_filter_column = false,
+          },
         },
       }
 
@@ -100,7 +103,9 @@ return {
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = 'Find files' })
+      -- vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = 'Find files' })
+      -- path_display shorten / absolute / filename_first
+      vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope frecency workspace=CWD path_display={"filename_first"}<CR>', { desc = 'Find files' })
       vim.keymap.set('n', '<leader>/', builtin.live_grep, { desc = 'Grep' })
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[H]elp' })
       vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[K]eymaps' })
@@ -111,7 +116,6 @@ return {
       vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = 'Recent files ("." for repeat)' })
       vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[B]uffers' })
       vim.keymap.set('n', '<leader>n', '<cmd>Telescope fidget<CR>', { desc = '[N]otification history' })
-      vim.keymap.set('n', '<leader>ff', '<cmd>Telescope frecency workspace=CWD path_display={"shorten"}<CR>', { desc = '[F]recency' })
 
       vim.keymap.set('n', '<leader>gc', builtin.git_bcommits, { desc = '[C]ommits (buffer)' })
       vim.keymap.set('n', '<leader>gC', builtin.git_commits, { desc = '[C]ommits (root)' })
