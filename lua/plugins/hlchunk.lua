@@ -6,7 +6,7 @@ return {
       chunk = {
         enable = true,
         use_treesitter = true,
-        textobject = 'inner chunk',
+        textobject = 'ac',
         style = {
           { fg = '#f3ecd4' },
           { fg = '#c21f30' },

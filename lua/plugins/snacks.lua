@@ -14,7 +14,7 @@ return {
           -- When using a function, the `items` argument are the default keymaps.
           ---@type snacks.dashboard.Item[]
           keys = {
-            { icon = ' ', key = 'f', desc = 'Find File', action = ":lua Snacks.dashboard.pick('files')" },
+            { icon = ' ', key = 'f', desc = 'Find File', action = ':Telescope frecency workspace=CWD path_display={"filename_first"}' },
             { icon = ' ', key = 't', desc = 'Find Text', action = ":lua Snacks.dashboard.pick('live_grep')" },
             { icon = '', key = 'e', desc = 'File Explorer', action = ':Neotree' },
             { icon = '', key = 'g', desc = 'Git', action = ':lua Snacks.lazygit.open()' },
