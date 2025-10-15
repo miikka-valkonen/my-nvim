@@ -12,7 +12,7 @@ return {
     'DBUIFindBuffer',
   },
   keys = {
-    { '<leader>u', ':DBUIToggle<CR>', desc = 'Dadbod [U]I', silent = true },
+    { '<leader>U', ':DBUIToggle<CR>', desc = 'Dadbod [U]I', silent = true },
   },
   init = function()
     -- Your DBUI configuration

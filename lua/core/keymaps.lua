@@ -20,7 +20,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<TAB>', '<cmd>bn!<CR>', {}) -- Switch to next buffer
 vim.keymap.set('n', '<S-TAB>', '<cmd>bp!<CR>', {}) -- Switch to previous buffer
 
-vim.keymap.set('n', '<leader>s', '<cmd>vsplit<CR>', { desc = '[S]plit window' })
+vim.keymap.set('n', '<leader>w', '<cmd>vsplit<CR>', { desc = 'Split [W]indow' })
 vim.keymap.set('n', '<C-C>', '<C-W>c', { desc = 'Close current window' })
 
 -- Terminal keymaps
@@ -49,10 +49,29 @@ vim.keymap.set('n', '<leader>q', '<cmd>qa<CR>', { desc = '[Q]uit Neovim' })
 vim.keymap.set('n', '<C-s>', '<cmd>w<CR>')
 
 -- Run menu
-vim.keymap.set('n', '<leader>r', '', { desc = 'run' })
 vim.keymap.set(
   'n',
   '<leader>rf',
   '<Cmd>!tmux new-window -S -c ' .. vim.fn.getcwd() .. '/src/AzureFunctions -n func "func start"<CR>',
   { desc = 'Run [F]unction app', silent = true }
+)
+
+-- Work items menu
+vim.keymap.set(
+  'n',
+  '<leader>wd',
+  '<Cmd>!print_branch.sh | xargs az boards work-item show --fields System.Description --expand none --id | jq -r \'."fields"."System.Description"\' | tidy -iq -xml<CR>',
+  { desc = '[D]escription', silent = true }
+)
+vim.keymap.set(
+  'n',
+  '<leader>wa',
+  '<Cmd>!print_branch.sh | xargs az boards work-item show --fields Microsoft.VSTS.Common.AcceptanceCriteria --expand none --id | jq -r \'."fields"."Microsoft.VSTS.Common.AcceptanceCriteria"\' | tidy -iq -xml<CR>',
+  { desc = '[A]cceptanceCriteria', silent = true }
+)
+vim.keymap.set(
+  'n',
+  '<leader>wo',
+  '<Cmd>!print_branch.sh | xargs az boards work-item show --expand none --fields id,System.TeamProject --open --id<CR>',
+  { desc = '[O]pen', silent = true }
 )
