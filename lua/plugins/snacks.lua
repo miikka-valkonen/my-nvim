@@ -63,6 +63,21 @@ return {
       -- },
       lazygit = { enabled = true },
       terminal = { enabled = true },
+      scratch = {
+        enabled = true,
+        ft = function()
+          return ''
+          -- if vim.bo.buftype == '' and vim.bo.filetype ~= '' then
+          --   return vim.bo.filetype
+          -- end
+          -- return 'markdown'
+        end,
+        filekey = {
+          cwd = true, -- use current working directory
+          branch = false, -- use current branch name
+          count = true, -- use vim.v.count1
+        },
+      },
       -- input = { enabled = true },
       -- picker = { enabled = true },
       -- notifier = { enabled = true },
@@ -93,6 +108,20 @@ return {
           Snacks.bufdelete.all()
         end,
         desc = 'Delete [A]ll',
+      },
+      {
+        '<leader>ss',
+        function()
+          Snacks.scratch()
+        end,
+        desc = 'Toggle Scratch Buffer',
+      },
+      {
+        '<leader>sb',
+        function()
+          Snacks.scratch.select()
+        end,
+        desc = 'Select Scratch Buffer',
       },
       {
         '<leader>gg',
