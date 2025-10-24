@@ -65,9 +65,21 @@ vim.keymap.set(
 )
 vim.keymap.set(
   'n',
+  '<leader>wD',
+  '<Cmd>!print_branch.sh | xargs az boards work-item show --fields System.Description --expand none --id | jq -r \'."fields"."System.Description"\'<CR>',
+  { desc = '[D]escription (plain)', silent = true }
+)
+vim.keymap.set(
+  'n',
   '<leader>wa',
   '<Cmd>!print_branch.sh | xargs az boards work-item show --fields Microsoft.VSTS.Common.AcceptanceCriteria --expand none --id | jq -r \'."fields"."Microsoft.VSTS.Common.AcceptanceCriteria"\' | tidy -iq -xml<CR>',
   { desc = '[A]cceptanceCriteria', silent = true }
+)
+vim.keymap.set(
+  'n',
+  '<leader>wA',
+  '<Cmd>!print_branch.sh | xargs az boards work-item show --fields Microsoft.VSTS.Common.AcceptanceCriteria --expand none --id | jq -r \'."fields"."Microsoft.VSTS.Common.AcceptanceCriteria"\'<CR>',
+  { desc = '[A]cceptanceCriteria (plain)', silent = true }
 )
 vim.keymap.set(
   'n',
