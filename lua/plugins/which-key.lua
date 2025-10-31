@@ -65,6 +65,7 @@ return {
         { '<leader>b', group = '[B]uffer' },
         { '<leader>r', group = '[R]un' },
         { '<leader>w', group = '[W]ork items' },
+        { '<leader>d', group = '[D]ebug' },
         { 'gs', group = '[S]urround' },
       },
     },
