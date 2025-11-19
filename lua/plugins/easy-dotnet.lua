@@ -1,6 +1,6 @@
 return {
   'GustavEikaas/easy-dotnet.nvim',
-  cmd = 'Dotnet',
+  -- cmd = 'Dotnet',
   keys = {
     { '<leader>rb', ':Dotnet build<CR>', desc = '[B]uild dotnet', silent = true },
     { '<leader>rt', ':Dotnet test<CR>', desc = '[T]est dotnet', silent = true },
@@ -89,6 +89,10 @@ return {
       notifications = {
         --Set this to false if you have configured lualine to avoid double logging
         handler = false,
+      },
+      debugger = {
+        --name if netcoredbg is in PATH or full path like 'C:\Users\gusta\AppData\Local\nvim-data\mason\bin\netcoredbg.cmd'
+        bin_path = 'netcoredbg',
       },
     }
   end,

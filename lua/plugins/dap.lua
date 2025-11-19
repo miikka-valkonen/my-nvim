@@ -1,81 +1,30 @@
 return {
   {
     'mfussenegger/nvim-dap',
-    dependencies = {
-      'rcarriga/nvim-dap-ui',
-      'nvim-neotest/nvim-nio',
-    },
     config = function()
       local dap = require 'dap'
-      local dapui = require 'dapui'
 
-      dap.adapters.coreclr = {
-        type = 'executable',
-        command = 'netcoredbg',
-        args = { '--interpreter=vscode' },
-      }
+      -- Keymaps for controlling the debugger
+      vim.keymap.set('n', '<leader>dq', function()
+        dap.terminate()
+        dap.clear_breakpoints()
+      end, { desc = 'Terminate and clear breakpoints' })
 
-      dap.configurations.cs = {
-        {
-          type = 'coreclr',
-          name = 'launch - netcoredbg',
-          request = 'launch',
-          program = function()
-            return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/net9.0/', 'file')
-          end,
-        },
-      }
-      dap.configurations.fsharp = {
-        {
-          type = 'coreclr',
-          name = 'launch - netcoredbg',
-          request = 'launch',
-          program = function()
-            return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/net9.0/', 'file')
-          end,
-        },
-        {
-          type = 'coreclr',
-          name = 'attach - azure function',
-          request = 'attach',
-          processId = function()
-            return require('dap.utils').pick_process()
-          end,
-        },
-      }
-
-      dapui.setup()
-
-      -- auto-open/close UI
-      dap.listeners.after.event_initialized['dapui_config'] = function()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated['dapui_config'] = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited['dapui_config'] = function()
-        dapui.close()
-      end
-
-      -- Keymaps
-      vim.keymap.set('n', '<F5>', function()
-        dap.continue()
-      end)
-      vim.keymap.set('n', '<F10>', function()
-        dap.step_over()
-      end)
-      vim.keymap.set('n', '<F11>', function()
-        dap.step_into()
-      end)
-      -- vim.keymap.set('n', '<F12>', function()
-      --   dap.step_out()
-      -- end)
-      vim.keymap.set('n', '<leader>db', function()
-        dap.toggle_breakpoint()
-      end, { desc = '[B]reakpoint toggle' })
+      vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Start/continue debugging' })
+      vim.keymap.set('n', '<F10>', dap.step_over, { desc = 'Step over' })
+      vim.keymap.set('n', '<F11>', dap.step_into, { desc = 'Step into' })
+      vim.keymap.set('n', '<leader>do', dap.step_out, { desc = 'Step out' })
+      vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Toggle breakpoint' })
       vim.keymap.set('n', '<leader>dB', function()
         dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-      end, { desc = '[B]reakpoint condition' })
+      end, { desc = 'Breakpoint condition' })
+      vim.keymap.set('n', '<leader>dc', dap.run_to_cursor, { desc = 'Run to cursor' })
+      vim.keymap.set('n', '<leader>dr', dap.repl.toggle, { desc = 'Toggle DAP REPL' })
+      vim.keymap.set('n', '<leader>dj', dap.down, { desc = 'Go down stack frame' })
+      vim.keymap.set('n', '<leader>dk', dap.up, { desc = 'Go up stack frame' })
+
+      -- .NET specific setup using `easy-dotnet`
+      require('easy-dotnet.netcoredbg').register_dap_variables_viewer() -- special variables viewer specific for .NET
     end,
   },
 }
