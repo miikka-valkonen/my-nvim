@@ -53,15 +53,6 @@ vim.api.nvim_create_autocmd('User', {
 })
 
 vim.api.nvim_create_autocmd('Filetype', {
-  pattern = 'norg',
-  callback = function()
-    vim.keymap.set('n', '<C-Space>', '<Plug>(neorg.qol.todo-items.todo.task-cycle)', { buffer = true })
-    vim.keymap.set('n', '<CR>', '<Plug>(neorg.esupports.hop.hop-link)', { buffer = true })
-    vim.keymap.set('n', '<C-d>', '<Plug>(neorg.tempus.insert-date)', { buffer = true })
-  end,
-})
-
-vim.api.nvim_create_autocmd('Filetype', {
   pattern = 'make',
   callback = function()
     vim.opt_local.expandtab = false
