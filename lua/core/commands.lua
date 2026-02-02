@@ -66,6 +66,19 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'csv',
+  callback = function()
+    vim.api.nvim_buf_set_keymap(
+      0,
+      'n',
+      '<C-d>',
+      ":pu=strftime('%a %d %b %Y')<CR>A;0920;1550;toimistolla, matkat 1000-1030 & 1350-1420",
+      { noremap = true, silent = true }
+    )
+  end,
+})
+
 -- User commands
 vim.api.nvim_create_user_command('MasonInstallAll', function()
   -- these have problems:
