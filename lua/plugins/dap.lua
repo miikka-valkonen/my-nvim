@@ -9,6 +9,42 @@ return {
       local dap = require 'dap'
       local dapui = require 'dapui'
 
+      dap.adapters.coreclr = {
+        type = 'executable',
+        command = 'netcoredbg',
+        args = { '--interpreter=vscode' },
+      }
+
+      dap.configurations.cs = {
+        {
+          type = 'coreclr',
+          name = 'launch - netcoredbg',
+          request = 'launch',
+          program = function()
+            return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/net10.0/', 'file')
+          end,
+        },
+      }
+
+      dap.configurations.fsharp = {
+        {
+          type = 'coreclr',
+          name = 'launch - netcoredbg',
+          request = 'launch',
+          program = function()
+            return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/net10.0/', 'file')
+          end,
+        },
+        {
+          type = 'coreclr',
+          name = 'attach - azure function',
+          request = 'attach',
+          processId = function()
+            return require('dap.utils').pick_process()
+          end,
+        },
+      }
+
       dapui.setup()
 
       -- auto-open/close UI
@@ -40,9 +76,6 @@ return {
       vim.keymap.set('n', '<leader>zr', dap.repl.toggle, { desc = 'Toggle DAP REPL' })
       vim.keymap.set('n', '<leader>zj', dap.down, { desc = 'Go down stack frame' })
       vim.keymap.set('n', '<leader>zk', dap.up, { desc = 'Go up stack frame' })
-
-      -- .NET specific setup using `easy-dotnet`
-      require('easy-dotnet.netcoredbg').register_dap_variables_viewer() -- special variables viewer specific for .NET
     end,
   },
 }
