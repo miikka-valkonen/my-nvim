@@ -94,33 +94,36 @@ vim.keymap.set('n', '<leader>rf', function()
 end, { desc = 'Run [F]unction app in selected subdir', silent = true })
 
 -- Work items menu
-vim.keymap.set(
-  'n',
-  '<leader>wd',
-  '<Cmd>!print_branch.sh | xargs az boards work-item show --fields System.Description --expand none --id | jq -r \'."fields"."System.Description"\' | tidy -iq -xml<CR>',
-  { desc = '[D]escription', silent = true }
-)
-vim.keymap.set(
-  'n',
-  '<leader>wD',
-  '<Cmd>!print_branch.sh | xargs az boards work-item show --fields System.Description --expand none --id | jq -r \'."fields"."System.Description"\'<CR>',
-  { desc = '[D]escription (plain)', silent = true }
-)
-vim.keymap.set(
-  'n',
-  '<leader>wa',
-  '<Cmd>!print_branch.sh | xargs az boards work-item show --fields Microsoft.VSTS.Common.AcceptanceCriteria --expand none --id | jq -r \'."fields"."Microsoft.VSTS.Common.AcceptanceCriteria"\' | tidy -iq -xml<CR>',
-  { desc = '[A]cceptanceCriteria', silent = true }
-)
-vim.keymap.set(
-  'n',
-  '<leader>wA',
-  '<Cmd>!print_branch.sh | xargs az boards work-item show --fields Microsoft.VSTS.Common.AcceptanceCriteria --expand none --id | jq -r \'."fields"."Microsoft.VSTS.Common.AcceptanceCriteria"\'<CR>',
-  { desc = '[A]cceptanceCriteria (plain)', silent = true }
-)
-vim.keymap.set(
-  'n',
-  '<leader>wo',
-  '<Cmd>!print_branch.sh | xargs az boards work-item show --expand none --fields id,System.TeamProject --open --id<CR>',
-  { desc = '[O]pen', silent = true }
-)
+vim.keymap.set('n', '<leader>wd', function()
+  local workItem = vim.fn.system('print_branch.sh'):gsub('%s+$', '')
+  if not workItem:match '^%d+$' then
+    return
+  end
+  local cmd = string.format(
+    'az boards work-item show --fields System.Description --expand none --id %s | jq -r \'."fields"."System.Description"\' | pup --color',
+    workItem
+  )
+  local opts = { auto_close = false }
+  Snacks.terminal.open(cmd, opts)
+end, { desc = '[D]escription', silent = true })
+
+vim.keymap.set('n', '<leader>wa', function()
+  local workItem = vim.fn.system('print_branch.sh'):gsub('%s+$', '')
+  if not workItem:match '^%d+$' then
+    return
+  end
+  local cmd = string.format(
+    'az boards work-item show --fields Microsoft.VSTS.Common.AcceptanceCriteria --expand none --id %s | jq -r \'."fields"."Microsoft.VSTS.Common.AcceptanceCriteria"\' | pup --color',
+    workItem
+  )
+  local opts = { auto_close = false }
+  Snacks.terminal.open(cmd, opts)
+end, { desc = '[A]cceptanceCriteria', silent = true })
+
+vim.keymap.set('n', '<leader>wo', function()
+  local workItem = vim.fn.system('print_branch.sh'):gsub('%s+$', '')
+  if not workItem:match '^%d+$' then
+    return
+  end
+  vim.cmd '!print_branch.sh | xargs az boards work-item show --expand none --fields id,System.TeamProject --open --id'
+end, { desc = '[O]pen', silent = true })

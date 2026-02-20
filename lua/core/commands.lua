@@ -69,13 +69,7 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'csv',
   callback = function()
-    vim.api.nvim_buf_set_keymap(
-      0,
-      'n',
-      '<C-d>',
-      ":pu=strftime('%a %d %b %Y')<CR>A;0920;1550;toimistolla, matkat 1000-1030 & 1350-1420",
-      { noremap = true, silent = true }
-    )
+    vim.api.nvim_buf_set_keymap(0, 'n', '<C-d>', "G:pu=strftime('%a %d %b %Y')<CR>A;0940;1740;toimistolla", { noremap = true, silent = true })
   end,
 })
 
