@@ -49,7 +49,8 @@ vim.keymap.set('n', '<leader>q', '<cmd>qa<CR>', { desc = '[Q]uit Neovim' })
 vim.keymap.set('n', '<C-s>', '<cmd>w<CR>')
 
 vim.keymap.set('n', '<leader>W', function()
-  vim.cmd 'edit ~/notes/workhours.csv'
+  -- vim.cmd 'edit ~/notes/workhours.csv'
+  require('core.toggler').togglefile('~/notes/workhours.csv', { listed = false })
 end, { desc = '[W]orkhours' })
 
 -- Run menu
