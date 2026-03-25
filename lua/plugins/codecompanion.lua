@@ -1,5 +1,6 @@
 return {
   'olimorris/codecompanion.nvim',
+  version = '^19.0.0',
   opts = {
     extensions = {
       mcphub = {
@@ -25,7 +26,8 @@ return {
     { mode = 'v', 'ga', '<cmd>CodeCompanionChat Add<cr>', desc = '[A]ctions', silent = true },
   },
   dependencies = {
-    { 'nvim-lua/plenary.nvim', branch = 'master' },
+    'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
+    'ravitemer/mcphub.nvim',
   },
 }

@@ -34,7 +34,12 @@ return {
         source = require('mini.diff').gen_source.none(),
       }
 
-      -- require('mini.indentscope').setup {}
+      require('mini.indentscope').setup {
+        options = {
+          border = 'top',
+          indent_at_cursor = false,
+        },
+      }
     end,
   },
 }

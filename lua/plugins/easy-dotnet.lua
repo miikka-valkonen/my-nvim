@@ -1,6 +1,6 @@
 return {
   'GustavEikaas/easy-dotnet.nvim',
-  -- cmd = 'Dotnet',
+  cmd = 'Dotnet',
   keys = {
     { '<leader>rb', ':Dotnet build<CR>', desc = '[B]uild dotnet', silent = true },
     { '<leader>rt', ':Dotnet test<CR>', desc = '[T]est dotnet', silent = true },

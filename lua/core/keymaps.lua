@@ -32,7 +32,9 @@ vim.keymap.set('t', '<C-l>', '<C-\\><C-N><C-w>l')
 -- Exit terminal mode
 vim.keymap.set('t', '<ESC>', '<C-\\><C-N>')
 vim.keymap.set('t', 'jk', '<C-\\><C-N>')
-vim.keymap.set('n', '<leader>T', '<Cmd>!tmux new-window -c ' .. vim.fn.getcwd() .. '<CR>', { desc = 'New [T]mux window', silent = true })
+vim.keymap.set('n', '<leader>T', function()
+  vim.system { 'tmux', 'new-window', '-c', vim.fn.getcwd() }
+end, { desc = 'New [T]mux window', silent = true })
 
 -- Quickly exit from insert mode
 vim.keymap.set('i', 'jk', '<ESC>')
@@ -84,8 +86,15 @@ vim.keymap.set('n', '<leader>rf', function()
           local selection = require('telescope.actions.state').get_selected_entry()
           if selection then
             local dir = src_path .. selection[1]
-            local cmd = string.format('tmux new-window -S -c %s -n func "func start"', vim.fn.shellescape(dir))
-            vim.cmd('silent !' .. cmd)
+            vim.system {
+              'tmux',
+              'new-window',
+              '-S',
+              '-c',
+              dir,
+              '-n',
+              'func start',
+            }
           end
         end)
         return true
@@ -126,5 +135,17 @@ vim.keymap.set('n', '<leader>wo', function()
   if not workItem:match '^%d+$' then
     return
   end
-  vim.cmd '!print_branch.sh | xargs az boards work-item show --expand none --fields id,System.TeamProject --open --id'
+  vim.system {
+    'az',
+    'boards',
+    'work-item',
+    'show',
+    '--expand',
+    'none',
+    '--fields',
+    'id,System.TeamProject',
+    '--open',
+    '--id',
+    workItem,
+  }
 end, { desc = '[O]pen', silent = true })

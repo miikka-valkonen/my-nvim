@@ -1,24 +1,26 @@
-return {
-  'shellRaining/hlchunk.nvim',
-  event = { 'BufReadPre', 'BufNewFile' },
-  config = function()
-    require('hlchunk').setup {
-      chunk = {
-        enable = true,
-        use_treesitter = true,
-        textobject = 'ac',
-        style = {
-          { fg = '#f3ecd4' },
-          { fg = '#c21f30' },
-        },
-        chars = {
-          horizontal_line = '─',
-          vertical_line = '│',
-          left_top = '╭',
-          left_bottom = '╰',
-          right_arrow = '─',
-        },
-      },
-    }
-  end,
-}
+-- disabled in favor of mini.indentscope
+return {}
+-- return {
+--   'shellRaining/hlchunk.nvim',
+--   event = { 'BufReadPre', 'BufNewFile' },
+--   config = function()
+--     require('hlchunk').setup {
+--       chunk = {
+--         enable = true,
+--         use_treesitter = true,
+--         textobject = 'ac',
+--         style = {
+--           { fg = '#f3ecd4' },
+--           { fg = '#c21f30' },
+--         },
+--         chars = {
+--           horizontal_line = '─',
+--           vertical_line = '│',
+--           left_top = '╭',
+--           left_bottom = '╰',
+--           right_arrow = '─',
+--         },
+--       },
+--     }
+--   end,
+-- }
