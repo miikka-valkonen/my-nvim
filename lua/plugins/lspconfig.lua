@@ -281,6 +281,118 @@ return {
       }
 
       vim.lsp.enable 'contextive'
+
+      -- vim.lsp.buf.hover override with cleaner print on K keypress
+      local ms = vim.lsp.protocol.Methods
+
+      local function make_position_request_params(extra_params)
+        local win = vim.api.nvim_get_current_win()
+        return function(client)
+          local params = vim.lsp.util.make_position_params(win, client.offset_encoding)
+          if extra_params then
+            params = vim.tbl_extend('force', params, extra_params)
+          end
+          return params
+        end
+      end
+
+      local function sanitize_hover_lines(lines)
+        local out = {}
+        for _, line in ipairs(lines) do
+          local trimmed = vim.trim(line)
+          local is_link = trimmed:match '^<a%s+href='
+          if trimmed ~= '' and not is_link then
+            out[#out + 1] = line
+          end
+        end
+        return out
+      end
+
+      local function notify_no_hover_info(config)
+        if config.silent ~= true then
+          vim.notify('No information available', vim.log.levels.INFO)
+        end
+      end
+
+      local function collect_hover_results(results)
+        local out = {}
+        for client_id, resp in pairs(results) do
+          if resp and resp.result and resp.result.contents then
+            out[client_id] = resp.result
+          end
+        end
+        return out
+      end
+
+      local function markdown_block_from_hover_result(result, multiple_clients)
+        local block
+
+        if type(result.contents) == 'table' and result.contents.kind == 'plaintext' then
+          block = vim.split(result.contents.value or '', '\n', { trimempty = true })
+          if multiple_clients then
+            table.insert(block, 1, '```')
+            block[#block + 1] = '```'
+          end
+        else
+          block = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
+        end
+
+        return sanitize_hover_lines(block)
+      end
+
+      local function build_hover_contents(non_empty_results)
+        local contents = {}
+        local client_ids = vim.tbl_keys(non_empty_results)
+        table.sort(client_ids) -- deterministic order
+        local multiple_clients = #client_ids > 1
+
+        for _, client_id in ipairs(client_ids) do
+          local result = non_empty_results[client_id]
+          local client = vim.lsp.get_client_by_id(client_id)
+          local block = markdown_block_from_hover_result(result, multiple_clients)
+
+          if #block > 0 then
+            if multiple_clients and client then
+              contents[#contents + 1] = string.format('# %s', client.name)
+            end
+            vim.list_extend(contents, block)
+            contents[#contents + 1] = '---'
+          end
+        end
+
+        if #contents > 0 and contents[#contents] == '---' then
+          contents[#contents] = nil
+        end
+
+        return contents
+      end
+
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.lsp.buf.hover = function(config)
+        config = config or {}
+        config.focus_id = ms.textDocument_hover
+        config.border = 'single'
+
+        vim.lsp.buf_request_all(0, ms.textDocument_hover, make_position_request_params(), function(results, ctx)
+          if vim.api.nvim_get_current_buf() ~= ctx.bufnr then
+            return
+          end
+
+          local non_empty_results = collect_hover_results(results)
+          if vim.tbl_isempty(non_empty_results) then
+            notify_no_hover_info(config)
+            return
+          end
+
+          local contents = build_hover_contents(non_empty_results)
+          if vim.tbl_isempty(contents) then
+            notify_no_hover_info(config)
+            return
+          end
+
+          vim.lsp.util.open_floating_preview(contents, 'markdown', config)
+        end)
+      end
     end,
   },
 }
