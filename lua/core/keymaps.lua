@@ -55,6 +55,11 @@ vim.keymap.set('n', '<leader>W', function()
   require('core.toggler').togglefile('~/notes/workhours.csv', { listed = false })
 end, { desc = '[W]orkhours' })
 
+vim.keymap.set('n', '<leader>O', function()
+  vim.system { 'tmux', 'new-window', '-c', vim.fn.getcwd(), '-n', 'opencode' }
+  vim.system { 'tmux', 'send-keys', '-t', 'opencode', 'exec opencode', 'C-m' }
+end, { desc = '[O]pencode', silent = true })
+
 -- Run menu
 vim.keymap.set('n', '<leader>rf', function()
   local src_path = vim.fn.getcwd() .. '/src/'

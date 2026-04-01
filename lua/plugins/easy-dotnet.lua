@@ -2,8 +2,8 @@ return {
   'GustavEikaas/easy-dotnet.nvim',
   cmd = 'Dotnet',
   keys = {
-    { '<leader>rb', ':Dotnet build<CR>', desc = '[B]uild dotnet', silent = true },
-    { '<leader>rt', ':Dotnet test<CR>', desc = '[T]est dotnet', silent = true },
+    { '<leader>rb', '<cmd>Dotnet build<CR>', desc = '[B]uild dotnet', silent = true },
+    { '<leader>rt', '<cmd>Dotnet test<CR>', desc = '[T]est dotnet', silent = true },
   },
   config = function()
     local dotnet = require 'easy-dotnet'
@@ -70,9 +70,9 @@ return {
 
         -- Check if running within tmux
         if vim.env.TMUX then
-          local command = '"' .. commands[action]() .. '"'
-          vim.cmd('!tmux new-window -S -c ' .. vim.fn.getcwd() .. ' -n easydotnet')
-          vim.cmd('!tmux send-keys -t easydotnet ' .. command .. ' C-m')
+          local command = commands[action]()
+          vim.system { 'tmux', 'new-window', '-S', '-c', vim.fn.getcwd(), '-n', 'easydotnet' }
+          vim.system { 'tmux', 'send-keys', '-t', 'easydotnet', command, 'C-m' }
         else
           local command = commands[action]() .. '\r'
           vim.cmd 'vsplit'
