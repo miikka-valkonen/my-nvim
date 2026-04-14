@@ -78,6 +78,7 @@ return {
           pcall(vim.keymap.del, 'n', 'grn')
           pcall(vim.keymap.del, 'n', 'grr')
           pcall(vim.keymap.del, 'n', 'grt')
+          pcall(vim.keymap.del, 'n', 'grx')
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
@@ -281,6 +282,15 @@ return {
       }
 
       vim.lsp.enable 'contextive'
+
+      vim.lsp.config('ionide', {
+        cmd = { 'fsautocomplete' },
+        on_attach = function(client, _)
+          client.server_capabilities.semanticTokensProvider = nil
+        end,
+      })
+
+      vim.lsp.enable 'ionide'
 
       -- vim.lsp.buf.hover override with cleaner print on K keypress
       local ms = vim.lsp.protocol.Methods
