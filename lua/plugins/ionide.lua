@@ -1,5 +1,6 @@
 return {
   'ionide/ionide-vim',
+  ft = { 'fsharp', 'fsharp_project' },
   config = function()
     -- vim.g['fsharp#lsp_codelens'] = 0
     -- vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertLeave' }, {
