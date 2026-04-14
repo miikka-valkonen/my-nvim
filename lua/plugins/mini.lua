@@ -40,6 +40,16 @@ return {
           indent_at_cursor = false,
         },
       }
+
+      require('mini.operators').setup {
+        -- Replace text with register
+        replace = {
+          prefix = 'gz',
+
+          -- Whether to reindent new text to match previous indent
+          reindent_linewise = true,
+        },
+      }
     end,
   },
 }
