@@ -25,8 +25,11 @@ return {
         callback = function()
           -- Enable treesitter highlighting and disable regex syntax
           pcall(vim.treesitter.start)
-          -- Enable treesitter-based indentation
-          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          -- dont use treesitter-based indentation on fsharp, where ionide provides vim.bo.indentexpr
+          if vim.bo.filetype ~= 'fsharp' then
+            -- Enable treesitter-based indentation
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
         end,
       })
       local ensureInstalled = { 'bash', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'c_sharp', 'fsharp' }
