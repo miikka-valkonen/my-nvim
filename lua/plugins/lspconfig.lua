@@ -290,8 +290,6 @@ return {
         end,
       })
 
-      vim.lsp.enable 'ionide'
-
       -- vim.lsp.buf.hover override with cleaner print on K keypress
       local ms = vim.lsp.protocol.Methods
 
