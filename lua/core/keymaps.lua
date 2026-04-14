@@ -60,6 +60,14 @@ vim.keymap.set('n', '<leader>O', function()
   vim.system { 'tmux', 'send-keys', '-t', 'opencode', 'exec opencode', 'C-m' }
 end, { desc = '[O]pencode', silent = true })
 
+vim.keymap.set('n', '<F2>', function()
+  vim.diagnostic.jump { count = -1, float = true }
+end, { desc = 'Go to previous diagnostic' })
+vim.keymap.set('n', '<F3>', function()
+  vim.diagnostic.jump { count = 1, float = true }
+end, { desc = 'Go to next diagnostic' })
+vim.keymap.set('n', '<F4>', '~')
+
 -- Run menu
 vim.keymap.set('n', '<leader>rf', function()
   local src_path = vim.fn.getcwd() .. '/src/'
