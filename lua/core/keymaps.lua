@@ -69,6 +69,26 @@ end, { desc = 'Go to next diagnostic' })
 vim.keymap.set('n', '<F4>', '~')
 
 -- Run menu
+vim.keymap.set('n', '<leader>rb', function()
+  if vim.env.TMUX then
+    vim.system { 'tmux', 'new-window', '-S', '-c', vim.fn.getcwd(), '-n', 'build' }
+    vim.system { 'tmux', 'send-keys', '-t', 'build', 'dotnet build', 'C-m' }
+  else
+    vim.cmd 'vsplit'
+    vim.cmd 'term dotnet build'
+  end
+end, { desc = '[B]uild solution', silent = true })
+
+vim.keymap.set('n', '<leader>rt', function()
+  if vim.env.TMUX then
+    vim.system { 'tmux', 'new-window', '-S', '-c', vim.fn.getcwd(), '-n', 'test' }
+    vim.system { 'tmux', 'send-keys', '-t', 'test', 'dotnet test', 'C-m' }
+  else
+    vim.cmd 'vsplit'
+    vim.cmd 'term dotnet test'
+  end
+end, { desc = '[T]est solution', silent = true })
+
 vim.keymap.set('n', '<leader>rf', function()
   local src_path = vim.fn.getcwd() .. '/src/'
   local dirs = {}
@@ -108,6 +128,7 @@ vim.keymap.set('n', '<leader>rf', function()
               '-n',
               'func start',
             }
+            vim.system { 'tmux', 'send-keys', '-t', 'func start', 'func start', 'C-m' }
           end
         end)
         return true
