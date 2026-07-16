@@ -68,6 +68,8 @@ vim.keymap.set('n', '<F3>', function()
 end, { desc = 'Go to next diagnostic' })
 vim.keymap.set('n', '<F4>', '~')
 
+vim.keymap.set({ 'n', 'v' }, '<leader>go', '<cmd>GBrowse<cr>', { desc = 'Open in SC' })
+
 -- Run menu
 vim.keymap.set('n', '<leader>rb', function()
   if vim.env.TMUX then
