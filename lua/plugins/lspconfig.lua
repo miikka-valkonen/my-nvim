@@ -260,9 +260,9 @@ return {
         },
       }
 
-      -- vim.lsp.enable 'contextive'
-      vim.lsp.enable 'lua_ls'
-      vim.lsp.enable 'stylua'
+      for _, server in ipairs { 'lua_ls', 'stylua' } do
+        vim.lsp.enable(server)
+      end
 
       vim.lsp.config('ionide', {
         cmd = { 'fsautocomplete' },
