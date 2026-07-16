@@ -96,7 +96,6 @@ return {
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-      pcall(require('telescope').load_extension, 'fidget')
       pcall(require('telescope').load_extension, 'glyph')
       pcall(require('telescope').load_extension, 'frecency')
       pcall(require('telescope').load_extension, 'cmdline')
@@ -115,7 +114,7 @@ return {
       vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = '[R]esume' })
       vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = 'Recent files ("." for repeat)' })
       vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[B]uffers' })
-      vim.keymap.set('n', '<leader>n', '<cmd>Telescope fidget<CR>', { desc = '[N]otification history' })
+      vim.keymap.set('n', '<leader>n', '<cmd>Fidget history<CR>', { desc = '[N]otification history' })
 
       vim.keymap.set('n', '<leader>gc', builtin.git_bcommits, { desc = '[C]ommits (buffer)' })
       vim.keymap.set('n', '<leader>gC', builtin.git_commits, { desc = '[C]ommits (root)' })
