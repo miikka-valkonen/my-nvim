@@ -56,7 +56,7 @@ vim.keymap.set('n', '<leader>W', function()
 end, { desc = '[W]orkhours' })
 
 vim.keymap.set('n', '<leader>O', function()
-  vim.system { 'tmux', 'split-window', '-h', '-d', 'opencode --port' }
+  vim.system { 'tmux', 'split-window', '-h', 'opencode --port' }
 end, { desc = '[O]pencode', silent = true })
 
 vim.keymap.set('n', '<F2>', function()
