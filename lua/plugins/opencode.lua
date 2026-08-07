@@ -18,17 +18,19 @@ return {
 
     vim.o.autoread = true -- Required for `vim.g.opencode_opts.events.reload`
 
-    -- Recommended/example keymaps
-    vim.keymap.set({ 'n', 'v' }, '<leader>aa', function()
+    vim.keymap.set({ 'n' }, '<leader>aa', function()
       require('opencode').ask '@this: '
     end, { desc = 'Ask OpenCode…' })
-    vim.keymap.set({ 'n', 'v' }, '<leader>as', function()
+    vim.keymap.set({ 'n' }, '<leader>as', function()
       require('opencode').select()
     end, { desc = 'Select OpenCode…' })
 
-    vim.keymap.set({ 'n', 'v' }, 'ga', function()
+    vim.keymap.set({ 'x' }, 'ga', function()
       return require('opencode').operator '@this '
     end, { desc = 'Append range to OpenCode', expr = true })
+    vim.keymap.set({ 'n' }, 'ga', function()
+      return require('opencode').operator '@this ' .. '_'
+    end, { desc = 'Append line to OpenCode', expr = true })
 
     vim.keymap.set('n', '<leader>au', function()
       require('opencode').command 'session.half.page.up'

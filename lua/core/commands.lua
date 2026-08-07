@@ -20,7 +20,8 @@ vim.api.nvim_create_autocmd('User', {
     for _, win in ipairs(vim.api.nvim_list_wins()) do
       local buf = vim.api.nvim_win_get_buf(win)
       local ft = vim.api.nvim_get_option_value('filetype', { buf = buf })
-      if ft == 'dbui' or ft == 'dbout' or ft == 'codecompanion' then
+      local name = vim.fn.bufname(buf)
+      if ft == 'dbui' or ft == 'dbout' or ft == 'codecompanion' or name == 'Bruno Output' then
         vim.api.nvim_win_close(win, true)
       end
     end
