@@ -5,8 +5,6 @@ return {
     config = function()
       local lualine = require 'lualine'
 
-      local filetype = { 'filetype', icon_only = true }
-
       local lsp_status = {
         'lsp_status',
         icon = '', -- f013
@@ -16,7 +14,7 @@ return {
           separator = ' ',
         },
         -- List of LSP names to ignore (e.g., `null-ls`):
-        ignore_lsp = { 'contextive' },
+        ignore_lsp = {},
       }
 
       local diagnostics = {
@@ -68,8 +66,8 @@ return {
           lualine_b = {},
           lualine_c = { { 'filename', path = 1 }, lsp_status },
           lualine_x = { require('recorder').recordingStatus },
-          lualine_y = { diff, diagnostics, filetype },
-          lualine_z = {},
+          lualine_y = { diff, diagnostics },
+          lualine_z = { 'branch' },
         },
       }
     end,

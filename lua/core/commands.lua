@@ -78,5 +78,5 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_user_command('MasonInstallAll', function()
   -- these have problems:
   -- azure-pipelines-language-server
-  vim.cmd 'MasonInstall csharp-language-server csharpier netcoredbg bicep-lsp alejandra contextive netcoredbg jsonlint'
+  vim.cmd 'MasonInstall csharp-language-server csharpier netcoredbg bicep-lsp alejandra netcoredbg jsonlint'
 end, {})

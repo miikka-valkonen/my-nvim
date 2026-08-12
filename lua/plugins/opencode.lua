@@ -7,36 +7,21 @@ return {
       -- Your configuration, if any; goto definition on the type for details
       server = {
         start = function()
-          if vim.env.TMUX then
-            vim.system { 'tmux', 'split-window', '-h', '-d', 'opencode --port' }
-          else
-            vim.cmd 'vsplit term://opencode --port | wincmd p'
-          end
+          vim.cmd 'vsplit term://opencode --port | wincmd p'
         end,
       },
     }
 
     vim.o.autoread = true -- Required for `vim.g.opencode_opts.events.reload`
 
-    vim.keymap.set({ 'n' }, '<leader>aa', function()
+    vim.keymap.set({ 'n', 'x' }, 'gaa', function()
       require('opencode').ask '@this: '
-    end, { desc = 'Ask OpenCode…' })
-    vim.keymap.set({ 'n' }, '<leader>as', function()
+    end, { desc = '[A]sk OpenCode…' })
+    vim.keymap.set({ 'n', 'x' }, 'gas', function()
       require('opencode').select()
-    end, { desc = 'Select OpenCode…' })
-
-    vim.keymap.set({ 'x' }, 'ga', function()
+    end, { desc = '[S]elect OpenCode…' })
+    vim.keymap.set({ 'n', 'x' }, 'gaA', function()
       return require('opencode').operator '@this '
-    end, { desc = 'Append range to OpenCode', expr = true })
-    vim.keymap.set({ 'n' }, 'ga', function()
-      return require('opencode').operator '@this ' .. '_'
-    end, { desc = 'Append line to OpenCode', expr = true })
-
-    vim.keymap.set('n', '<leader>au', function()
-      require('opencode').command 'session.half.page.up'
-    end, { desc = 'Scroll OpenCode up' })
-    vim.keymap.set('n', '<leader>ad', function()
-      require('opencode').command 'session.half.page.down'
-    end, { desc = 'Scroll OpenCode down' })
+    end, { desc = '[A]ppend range to OpenCode', expr = true })
   end,
 }

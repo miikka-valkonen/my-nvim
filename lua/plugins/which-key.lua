@@ -66,7 +66,6 @@ return {
         { '<leader>r', group = '[R]un' },
         { '<leader>w', group = '[W]ork items' },
         { '<leader>z', group = 'Debug' },
-        { '<leader>a', group = '[A]I' },
         { '<leader>s', group = '[S]cratch' },
         { '<leader>B', group = '[B]runo' },
         { 'gs', group = '[S]urround' },
