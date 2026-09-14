@@ -1,35 +1,36 @@
 return {
   {
-    'rebelot/kanagawa.nvim',
+    'RRethy/base16-nvim',
     lazy = false,
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
-      -- NOTE: you do not need to call setup if you don't want to.
-      require('kanagawa').setup {
-        -- optional configuration here
-      }
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'kanagawa-dragon'
-    end,
-  },
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'metalelf0/black-metal-theme-neovim',
-    event = 'VeryLazy',
-    config = function()
-      require('black-metal').setup {
-        -- optional configusation here
-        theme = 'mayhem',
+      require('base16-colorscheme').setup {
+        -- base16-framer
+        base00 = '#181818', -- background
+        base01 = '#151515', -- lighter background
+        base02 = '#464646', -- selection background
+        base03 = '#747474', -- comments / invisibles
+        base04 = '#b9b9b9', -- dark foreground
+        base05 = '#d0d0d0', -- default foreground
+        base06 = '#e8e8e8', -- light foreground
+        base07 = '#eeeeee', -- light background
+        base08 = '#fd886b', -- variables / XML tags
+        base09 = '#fc4769', -- integers / booleans
+        base0A = '#fecb6e', -- classes / bold
+        base0B = '#32ccdc', -- strings
+        base0C = '#acddfd', -- support / regex
+        base0D = '#d0d0d0', -- functions / methods
+        base0E = '#ba8cfc', -- keywords
+        base0F = '#b15f4a', -- deprecated
       }
 
-      -- Convenience function that simply calls `:colorscheme <theme>` with the theme
-      -- specified in your config.
-      -- require('black-metal').load()
+      vim.api.nvim_set_hl(0, 'TelescopeBorder', { fg = '#888888' })
+      vim.api.nvim_set_hl(0, 'TelescopeResultsTitle', { fg = '#d0d0d0' })
+      vim.api.nvim_set_hl(0, 'TelescopePromptTitle', { fg = '#d0d0d0' })
+      vim.api.nvim_set_hl(0, 'TelescopePreviewTitle', { fg = '#d0d0d0' })
+      vim.api.nvim_set_hl(0, 'TelescopePromptNormal', { bg = '#181818' })
+      vim.api.nvim_set_hl(0, 'TelescopePromptBorder', { fg = '#888888', bg = '#181818' })
+      vim.api.nvim_set_hl(0, 'TelescopePromptPrefix', { bg = '#181818' })
     end,
   },
 }
