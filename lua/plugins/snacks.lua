@@ -133,7 +133,11 @@ return {
       {
         '<leader>t',
         function()
-          Snacks.terminal.toggle()
+          if vim.env.TMUX then
+            vim.system { 'tmux', 'new-window', '-c', vim.fn.getcwd() }
+          else
+            Snacks.terminal.toggle()
+          end
         end,
         desc = '[T]erminal',
       },

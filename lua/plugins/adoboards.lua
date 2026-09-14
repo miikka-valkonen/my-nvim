@@ -6,7 +6,7 @@ return {
     {
       '<leader>wB',
       function()
-        local workItem = vim.fn.system('print_branch.sh'):gsub('%s+$', '')
+        local workItem = vim.fn.system('print_branch'):gsub('%s+$', '')
         if not workItem:match '^%d+$' then
           return
         end

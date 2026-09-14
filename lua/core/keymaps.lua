@@ -31,10 +31,7 @@ vim.keymap.set('t', '<C-k>', '<C-\\><C-N><C-w>k')
 vim.keymap.set('t', '<C-l>', '<C-\\><C-N><C-w>l')
 -- Exit terminal mode
 vim.keymap.set('t', '<ESC>', '<C-\\><C-N>')
-vim.keymap.set('t', 'jk', '<C-\\><C-N>')
-vim.keymap.set('n', '<leader>T', function()
-  vim.system { 'tmux', 'new-window', '-c', vim.fn.getcwd() }
-end, { desc = 'New [T]mux window', silent = true })
+-- vim.keymap.set('t', 'jk', '<C-\\><C-N>')
 
 -- Quickly exit from insert mode
 vim.keymap.set('i', 'jk', '<ESC>')
@@ -140,7 +137,7 @@ end, { desc = 'Run [F]unction app in selected subdir', silent = true })
 
 -- Work items menu
 vim.keymap.set('n', '<leader>wd', function()
-  local workItem = vim.fn.system('print_branch.sh'):gsub('%s+$', '')
+  local workItem = vim.fn.system('print_branch'):gsub('%s+$', '')
   if not workItem:match '^%d+$' then
     return
   end
@@ -153,7 +150,7 @@ vim.keymap.set('n', '<leader>wd', function()
 end, { desc = '[D]escription', silent = true })
 
 vim.keymap.set('n', '<leader>wa', function()
-  local workItem = vim.fn.system('print_branch.sh'):gsub('%s+$', '')
+  local workItem = vim.fn.system('print_branch'):gsub('%s+$', '')
   if not workItem:match '^%d+$' then
     return
   end
@@ -166,7 +163,7 @@ vim.keymap.set('n', '<leader>wa', function()
 end, { desc = '[A]cceptanceCriteria', silent = true })
 
 vim.keymap.set('n', '<leader>wo', function()
-  local workItem = vim.fn.system('print_branch.sh'):gsub('%s+$', '')
+  local workItem = vim.fn.system('print_branch'):gsub('%s+$', '')
   if not workItem:match '^%d+$' then
     return
   end
