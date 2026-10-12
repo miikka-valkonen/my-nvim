@@ -171,12 +171,29 @@ vim.keymap.set('n', '<leader>wt', function()
   if not workItem:match '^%d+$' then
     return
   end
-  local cmd = string.format(
-    'az boards work-item show --fields System.Title --expand none --id %s | jq -r \'."fields"."System.Title"\' | pup --color',
-    workItem
-  )
-  local opts = { auto_close = false }
-  Snacks.terminal.open(cmd, opts)
+  vim.system({
+    'az',
+    'boards',
+    'work-item',
+    'show',
+    '--fields',
+    'System.Title',
+    '--expand',
+    'none',
+    '--id',
+    workItem,
+  }, { text = true }, function(result)
+    vim.schedule(function()
+      if result.code ~= 0 then
+        vim.notify(result.stderr:gsub('%s+$', ''), vim.log.levels.ERROR)
+        return
+      end
+
+      local title = vim.json.decode(result.stdout).fields['System.Title']
+      vim.fn.setreg('+', title)
+      vim.notify(title)
+    end)
+  end)
 end, { desc = '[T]opic', silent = true })
 
 vim.keymap.set('n', '<leader>wo', function()
