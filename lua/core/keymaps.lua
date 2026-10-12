@@ -53,7 +53,11 @@ vim.keymap.set('n', '<leader>W', function()
 end, { desc = '[W]orkhours' })
 
 vim.keymap.set('n', '<leader>O', function()
-  vim.system { 'tmux', 'split-window', '-h', 'opencode --port' }
+  if vim.env.TMUX then
+    vim.system { 'tmux', 'split-window', '-h', 'opencode --port' }
+  else
+    vim.cmd 'vsplit term://opencode --port | wincmd p'
+  end
 end, { desc = '[O]pencode', silent = true })
 
 vim.keymap.set('n', '<F2>', function()
@@ -161,6 +165,19 @@ vim.keymap.set('n', '<leader>wa', function()
   local opts = { auto_close = false }
   Snacks.terminal.open(cmd, opts)
 end, { desc = '[A]cceptanceCriteria', silent = true })
+
+vim.keymap.set('n', '<leader>wt', function()
+  local workItem = vim.fn.system('print_branch'):gsub('%s+$', '')
+  if not workItem:match '^%d+$' then
+    return
+  end
+  local cmd = string.format(
+    'az boards work-item show --fields System.Title --expand none --id %s | jq -r \'."fields"."System.Title"\' | pup --color',
+    workItem
+  )
+  local opts = { auto_close = false }
+  Snacks.terminal.open(cmd, opts)
+end, { desc = '[T]opic', silent = true })
 
 vim.keymap.set('n', '<leader>wo', function()
   local workItem = vim.fn.system('print_branch'):gsub('%s+$', '')
