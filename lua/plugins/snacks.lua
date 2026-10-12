@@ -21,6 +21,13 @@ return {
             { icon = '', key = 's', desc = 'Restore Session', section = 'session' },
             { icon = '󰒲 ', key = 'l', desc = 'Lazy', action = ':Lazy', enabled = package.loaded.lazy ~= nil },
             { icon = '', key = 'm', desc = 'Mason', action = ':Mason', enabled = package.loaded.lazy ~= nil },
+            {
+              icon = '',
+              key = 'w',
+              desc = 'Workhours',
+              action = ":lua require('core.toggler').togglefile('~/notes/workhours.csv', { listed = false })",
+              enabled = package.loaded.lazy ~= nil,
+            },
             { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
           },
           header = [[
